@@ -56,7 +56,7 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
                 res.json({"Error": true, "Message": "Error executing MySQL query"});
                 //result = "Error : Fail";
                 console.log("Error : Fail: " + err);
-                res.send()
+                //res.send()
             } else {
                 res.json({"Error": false, "Message": "User Added !"});
                 //result = "Success : Sport Added";
@@ -77,7 +77,7 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
                 res.json({"Error": true, "Message": "Error executing MySQL query"});
                 //result = "Error : Fail";
                 console.log("Error : Fail: " + err);
-                res.send()
+                //res.send()
             } else {
                 //res.json({"Error" : false, "Message" : "User Added !"});
                 //result = "Success : Sport Added";
@@ -282,14 +282,9 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
                 console.log(err);
             } else {
                 res.json({"Error": false, "Message": "Success", "User": rows});
-
-                for (var i = 0; i < rows.length; i++) {
-                    var row = rows[i];
-                    console.log(row.action_user_id);
-                }
-
             }
         });
+        connection.close();
     });
 
     router.get("/user/individual/", function (req, res) {
@@ -432,7 +427,7 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
                 res.json({"Error": true, "Message": "Error executing MySQL query"});
                 //result = "Error : Fail";
                 console.log("Error : Fail: " + err);
-                res.send()
+                //res.send()
             } else {
                 res.json({"Error": false, "Message": "User Added !"});
                 //result = "Success : Sport Added";
@@ -469,7 +464,7 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
                 res.json({"Error": true, "Message": "Error executing MySQL query"});
                 //result = "Error : Fail";
                 console.log("Error : Fail: " + err);
-                res.send()
+                //res.send()
             } else {
                 res.json({"Error": false, "Message": rows.insertId});
                 //result = "Success : Sport Added";
@@ -519,7 +514,7 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
             if (err) {
                 res.json({"Error": true, "Message": "Error executing MySQL query"});
                 console.log("Error : Fail: " + err);
-                res.send()
+                //res.send()
             } else {
                 res.json({"Error": false, "Message": "Event Added !"});
                 //result = "Success : Sport Added";
@@ -542,7 +537,7 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
             if (err) {
                 res.json({"Error": true, "Message": "Error executing MySQL query"});
                 console.log("Error : Fail: " + err);
-                res.send()
+                //res.send()
             } else {
                 res.json({"Error": false, "Message": "Event updated.... !"});
 
@@ -565,7 +560,7 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
             if (err) {
                 res.json({"Error": true, "Message": "Error executing MySQL query"});
                 console.log("Error : Fail: " + err);
-                res.send()
+                //res.send()
             } else {
                 res.json({"Error": false, "Message": "Success", "Event": rows});
                 //result = "Success : Sport Added"
@@ -771,7 +766,7 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
             if (err) {
                 res.json({"Error": true, "Message": "Error executing MySQL query"});
                 console.log("Error : Fail: " + err);
-                res.send()
+                //res.send()
             } else {
                 newGroupID = rows.insertId;
 
@@ -849,7 +844,7 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
             if (err) {
                 res.json({"Error": true, "Message": "Error executing MySQL query"});
                 console.log("Error : Fail: " + err);
-                res.send()
+                //res.send()
             } else {
                 res.json({
                     "Error": false,
@@ -870,7 +865,7 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
             if (err) {
                 res.json({"Error": true, "Message": "Error executing MySQL query"});
                 console.log("Error : Fail: " + err);
-                res.send()
+                //res.send()
             } else {
                 console.log(JSON.stringify(rows, null, 2));
                 res.json({
@@ -938,7 +933,7 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
             if (err) {
                 res.json({"Error": true, "Message": "Error executing MySQL query"});
                 console.log("Error : Fail: " + err);
-                res.send()
+                //res.send()
             } else {
                 console.log(JSON.stringify(rows, null, 2));
                 res.json({
@@ -1019,7 +1014,7 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
             if (err) {
                 res.json({"Error": true, "Message": "Error executing MySQL query"});
                 console.log("Error : Fail: " + err);
-                res.send()
+                //res.send()
             } else {
                 console.log(JSON.stringify(rows, null, 2));
                 res.json({
@@ -1054,7 +1049,7 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
             if (err) {
                 res.json({"Error": true, "Message": "Error executing MySQL query"});
                 console.log("Error : Fail: " + err);
-                res.send()
+                //res.send()
             } else {
                 console.log(JSON.stringify(rows, null, 2));
                 res.json({
@@ -1102,7 +1097,7 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
                 if (err) {
                     res.json({"Error": true, "Message": "Error executing MySQL query"});
                     console.log("Error : Fail: " + err);
-                    res.send()
+                    //res.send()
                 } else {
                     res.json({
                         "Error": false,

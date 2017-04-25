@@ -42,18 +42,18 @@ function REST(){
 };*/
 
 var db_config = {
-/* connectionLimit : 100,
+ connectionLimit : 100,
  host     : 'localhost',
  user     : 'root',
  password : '',
  database : 'sportshub',
- debug    :  false*/
-    connectionLimit : 100,
+ debug    :  false
+/*    connectionLimit : 100,
     host     : 'sportshub.cq2vzkcscpvk.eu-west-1.rds.amazonaws.com',
     user     : 'SportsHubAdmin',
     password : 'mickey123',
     database : 'sportshub',
-    debug    :  false
+    debug    :  false*/
 
 };
 
