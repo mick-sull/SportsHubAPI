@@ -284,7 +284,7 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
                 res.json({"Error": false, "Message": "Success", "User": rows});
             }
         });
-        connection.close();
+        //connection.close();
     });
 
     router.get("/user/individual/", function (req, res) {
@@ -924,7 +924,7 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
 
     router.get("/subscriptions/getSubscription/", function (req, res) {
         console.log("getSubscription called");
-        var query = "SELECT DISTINCT  sub.* FROM subscription sub WHERE sub.userID = ?;";
+        var query = "SELECT DISTINCT  sub.* FROM subscription sub WHERE sub.userID = ? and sub.active = 0;";
         //var query = "SELECT DISTINCT  sub.* FROM subscription sub WHERE sub.userID = fXToGmox25Y6JZwXTr1CPNdCoho1 AND sub.active = 0;";
         var table = [req.query.user_id];
        //var table = ["fXToGmox25Y6JZwXTr1CPNdCoho1"];

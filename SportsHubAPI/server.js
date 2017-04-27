@@ -29,7 +29,7 @@ function REST(){
     });
 }*/
 
-/*var db_config = {
+var db_config = {
     connectionLimit : 100,
     connectTimeout  : 60 * 60 * 1000,
     aquireTimeout   : 60 * 60 * 1000,
@@ -39,15 +39,15 @@ function REST(){
     password : 'mickey123',
     database : 'SportsHub',
     debug    :  false
-};*/
 
-var db_config = {
+
+/*var db_config = {
  connectionLimit : 100,
  host     : 'localhost',
  user     : 'root',
  password : '',
  database : 'sportshub',
- debug    :  false
+ debug    :  false*/
 /*    connectionLimit : 100,
     host     : 'sportshub.cq2vzkcscpvk.eu-west-1.rds.amazonaws.com',
     user     : 'SportsHubAdmin',
