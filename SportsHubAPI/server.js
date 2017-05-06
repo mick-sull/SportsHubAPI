@@ -37,7 +37,8 @@ var db_config = {
     host     : 'sportshub.cq2vzkcscpvk.eu-west-1.rds.amazonaws.com',
     user     : 'SportsHubAdmin',
     password : 'mickey123',
-    database : 'SportsHub',
+    //database : 'SportsHub',
+    database : 'sportshub',
     debug    :  false
 
 
