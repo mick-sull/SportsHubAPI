@@ -521,10 +521,15 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
 
 
     router.post("/event/update", function (req, res) {
-        var query = "UPDATE event SET public_game = ? WHERE event_id = ?;";
+       //var query = "UPDATE event SET public_game = ? WHERE event_id = ?;";
+
+        var query = "UPDATE event SET event_name=?,location_id=?,creator_user_id=?,event_date=?,event_time=?,sport_id=?,no_space=?,space_left=?,duration=?,gender=?,cost=?,public_game=? WHERE event_id =?"
+        var table = [req.body.event_name, req.body.location_id, req.body.creator_user_id, req.body.event_date, req.body.event_time, req.body.sport_id, req.body.no_space, req.body.space_left, req.body.duration, req.body.gender, req.body.cost, req.body.public_game];
+
+
         var keyName = req.body;
         console.log(keyName);
-        var table = [req.body.public_game, reg.bod.event_id];
+        //var table = [req.body.public_game, reg.bod.event_id];
 
         query = mysql.format(query, table);
         connection.query(query, function (err, rows) {
@@ -534,7 +539,7 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
                 //res.send()
             } else {
                 res.json({"Error": false, "Message": "Event updated.... !"});
-
+                sendEventRequest(req, res, req.body.creator_user_id, req.body.friends_invited, rows.insertId);
             }
         });
     });
