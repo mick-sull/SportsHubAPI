@@ -380,21 +380,15 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
 
     router.get("/user/chat/:user_id", function (req, res) {
         var query = "SELECT chat_id FROM conversations WHERE chat_id LIKE " + connection.escape('%' + req.query.user_id + '%');
-        //var query = "SELECT chat_id FROM conversations WHERE chat_id = ?";
-        //var table = [req.params.chat_id];
         query = mysql.format(query);
         connection.query(query, function (err, rows) {
             if (err) {
                 res.json({"Error": true, "Message": "Error executing MySQL query"});
-                //result = "Error : Fail";
                 console.log("Error : Fail: " + err);
 
-            } else {
-                //res.json({"Error" : false, "Message" : "Conversations found"});
-                //result = "Success : Sport Added";
+            } else {versation
                 res.json({"Error": false, "Message": "Success", "Conversations": rows});
                 console.log("Error : Fail: " + err);
-                console.log("ID: " + req.params.chat_id);
             }
         });
     });
@@ -1070,8 +1064,8 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
 
     router.get("/review/getReview/", function (req, res) {
         console.log("getReview called");
-        //var query = "SELECT * FROM event_attendee WHERE event_id = ? AND user_id = ?;";
-        var query = "SELECT * FROM event_attendee WHERE event_id = 93 AND user_id = 'fXToGmox25Y6JZwXTr1CPNdCoho1'";
+        var query = "SELECT * FROM event_attendee WHERE event_id = ? AND user_id = ?;";
+        //var query = "SELECT * FROM event_attendee WHERE event_id = 93 AND user_id = 'fXToGmox25Y6JZwXTr1CPNdCoho1'";
         var table = [req.query.event_id, req.query.user_id];
         query = mysql.format(query, table);
         connection.query(query, function (err, rows) {
@@ -1255,7 +1249,7 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
     function sendEventRequest(req, res, reqFromUserId,userTokens, eventID) {
 
         var regFromUserName;
-        var query = "SELECT userFullName FROM user where user_id = ?";
+        var query = "SELECT userFullName FROM user where user_id = ?"; //Get the user name of users full name who created the event
         var table = [reqFromUserId];
         query = mysql.format(query, table);
         connection.query(query, function (err, rows) {
@@ -1263,22 +1257,14 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
                 console.log(err);
                 //res.json({"Error" : true, "Message" : "Error executing MySQL query"});
             } else {
-                regFromUserName = rows[0].userFullName;
-
+                regFromUserName = rows[0].userFullName; //User name of the user who created in event.
 
                 var FCM = require('fcm-node');
                 var serverKey = 'AAAApfXJUV0:APA91bF3Cc_d-j9QWEMk2hhnHdO7G788GxKsUajSsaiLYQxko3DlpqPnaJ7Os3HrMM-hgoX96JqiyKJ2ihBYFEYMqioYZFgH3G1zUmCheC7k4abPixX0WRHwEH91MQJtUPMiaOgevqiRQHeAfZOJcQVDz7_dhDQEkQ';
                 var fcm = new FCM(serverKey);
                 var message = { //this may vary according to the message type (single recipient, multicast, topic, et cetera)
-                    //to: 'du66GYaFm2w:APA91bFvqa_QPGWo5E6QXUZd5KLqY7gFUqCqPSY59WzBzT12ReW_3DGbZNsV1DpslFhmVbcW57TIxjLQNJZldKrrSbaAdaPwdQ74BqGJEdh-QhJ1Lb6ySISbEz2d0gvTAc60rgGZG9q1',
-                    registration_ids: userTokens,
 
-                    //collapse_key: 'your_collapse_key',
-
-                    /*    notification: {
-                     title: 'SportsHub',
-                     body: 'Body of your push notification'
-                     },*/
+                    registration_ids: userTokens,//This will send it to multiple devices.
 
                     data: {  //you can send only notification or only data(or include both)
                         message: "Event request from: " + regFromUserName,
@@ -1289,18 +1275,11 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
                     }
                 };
 
-
                 fcm.send(message, function (err, response) {
                     if (err) {
                         console.log("Something has gone wrong! " + err);
- /*                       console.log("UserTokens1: " + userToken);
-                        console.log("regFromUserName1: " + regFromUserName);
-                        res.json({"Error": true, "Message": "Failed"});*/
                     } else {
                         console.log("Successfully sent with response: ", response);
-                        /*                        console.log("UserTokens1: " + userToken);
-                        console.log("regFromUserName1: " + regFromUserName);
-                        res.json({"Error": true, "Message": "Success"});*/
                     }
                 });
             }
