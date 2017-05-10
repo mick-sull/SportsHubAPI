@@ -275,6 +275,7 @@ REST_ROUTER.prototype.handleRoutes = function (router, connection, md5) {
         //var table = [req.params.user_id, req.params.user_id];
         var table = [req.query.user_id, req.query.user_id];
         console.log("Getting Friends List...");
+        console.log("Getting Friends List - USER ID: " +  req.query.user_id);
         query = mysql.format(query, table);
         connection.query(query, function (err, rows) {
             if (err) {
